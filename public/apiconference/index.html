@@ -179,7 +179,25 @@
       pointer-events: none;
     }
     @media (max-width: 576px) {
-      .tz-flag { width: 40px; height: 26px; top: 10px; right: 10px; }
+      .tz-flag {
+        width: 36px;
+        height: 24px;
+        top: 50%;
+        right: 64px;
+        transform: translateY(-50%);
+      }
+    }
+    @media (max-width: 991px) {
+      .tz-flag {
+        position: absolute;
+        top: 50%;
+        right: 70px;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 26px;
+        z-index: 1080;
+      }
+      .navbar.scrolling-navbar { position: fixed; }
     }
   </style>
 </head>

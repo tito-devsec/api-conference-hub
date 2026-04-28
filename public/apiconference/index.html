@@ -166,9 +166,24 @@
       .section-title{font-size:28px}
       .section-padding{padding:60px 0}
     }
+    .tz-flag {
+      position: fixed;
+      top: 14px;
+      right: 18px;
+      z-index: 1080;
+      width: 56px;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+      pointer-events: none;
+    }
+    @media (max-width: 576px) {
+      .tz-flag { width: 40px; top: 10px; right: 10px; }
+    }
   </style>
 </head>
 <body>
+<img class="tz-flag" src="https://flagcdn.com/w160/tz.gif" alt="Tanzania flag" title="Tanzania">
 
 <!-- HEADER + CAROUSEL -->
 <header id="header-wrap">

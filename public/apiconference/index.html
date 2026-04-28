@@ -172,18 +172,19 @@
       right: 18px;
       z-index: 1080;
       width: 56px;
-      height: auto;
+      height: 36px;
+      object-fit: cover;
       border-radius: 4px;
       box-shadow: 0 2px 8px rgba(0,0,0,.25);
       pointer-events: none;
     }
     @media (max-width: 576px) {
-      .tz-flag { width: 40px; top: 10px; right: 10px; }
+      .tz-flag { width: 40px; height: 26px; top: 10px; right: 10px; }
     }
   </style>
 </head>
 <body>
-<img class="tz-flag" src="https://flagcdn.com/w160/tz.gif" alt="Tanzania flag" title="Tanzania">
+<video class="tz-flag" src="tz-flag.mp4" autoplay loop muted playsinline aria-label="Tanzania flag" title="Tanzania"></video>
 
 <!-- HEADER + CAROUSEL -->
 <header id="header-wrap">

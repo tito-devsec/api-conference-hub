@@ -110,6 +110,45 @@
     .speaker-card h4{margin:0 0 4px;font-size:18px}
     .speaker-card span{color:var(--muted);font-size:14px}
     .speaker-card .bio{color:var(--muted);font-size:13.5px;line-height:1.55;margin:10px 0 0;min-height:72px}
+
+    /* OUR TEAM — showcase / slider */
+    #our-team{background:#0d1124;color:#e8ecf5;position:relative;overflow:hidden}
+    #our-team::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 80% 10%,rgba(7,163,177,.18),transparent 60%),radial-gradient(50% 40% at 10% 90%,rgba(7,163,177,.12),transparent 60%);pointer-events:none}
+    #our-team .section-title{color:#fff}
+    #our-team .section-title-header p{color:#a8b1c2}
+    .team-stage{position:relative;display:grid;grid-template-columns:200px 1fr 1.1fr;gap:40px;align-items:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:36px;backdrop-filter:blur(6px)}
+    .team-stage .meta{display:flex;flex-direction:column;gap:28px}
+    .team-stage .pager{font-size:14px;letter-spacing:3px;color:#a8b1c2}
+    .team-stage .pager b{color:#fff;font-size:22px;font-weight:700}
+    .team-stage .vlabel{writing-mode:vertical-rl;transform:rotate(180deg);text-transform:uppercase;letter-spacing:6px;font-size:12px;color:#6c7a89}
+    .team-thumbs{display:flex;flex-direction:column;gap:12px}
+    .team-thumbs button{all:unset;cursor:pointer;width:84px;height:104px;border-radius:10px;overflow:hidden;opacity:.55;transition:.3s;outline:2px solid transparent}
+    .team-thumbs button:hover{opacity:1}
+    .team-thumbs button.is-active{opacity:1;outline-color:var(--teal)}
+    .team-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+    .team-portrait{position:relative;height:520px;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+    .team-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+    .team-portrait img.is-active{opacity:1;transform:translateY(0)}
+    .team-info{display:flex;flex-direction:column;justify-content:space-between;height:520px;padding:14px 6px}
+    .team-info .role-tag{display:inline-block;align-self:flex-start;background:var(--teal-soft);color:var(--teal);font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:30px;margin-bottom:18px}
+    .team-info h3{color:#fff;font-size:44px;line-height:1.1;margin:0 0 22px}
+    .team-info .quote{color:#cfd5e2;font-size:18px;line-height:1.7;font-style:italic;margin:0 0 26px;max-width:520px}
+    .team-info .socials{display:flex;gap:10px;margin-bottom:28px}
+    .team-info .socials a{display:inline-flex;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.06);color:#fff;align-items:center;justify-content:center;transition:.3s}
+    .team-info .socials a:hover{background:var(--teal);color:#fff;transform:translateY(-2px)}
+    .team-nav{display:flex;gap:14px}
+    .team-nav button{all:unset;cursor:pointer;width:54px;height:54px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:inline-flex;align-items:center;justify-content:center;color:#fff;transition:.3s}
+    .team-nav button:hover{background:var(--teal);border-color:var(--teal);transform:translateY(-2px)}
+    .team-nav button i{font-size:20px}
+    @media (max-width:991px){
+      .team-stage{grid-template-columns:1fr;gap:28px;padding:24px}
+      .team-info,.team-portrait{height:auto}
+      .team-portrait{height:420px}
+      .team-info h3{font-size:32px}
+      .team-stage .meta{flex-direction:row;align-items:center;justify-content:space-between}
+      .team-stage .vlabel{display:none}
+      .team-thumbs{flex-direction:row;flex-wrap:wrap}
+    }
     .social{margin-top:12px}
     .social a{display:inline-flex;width:34px;height:34px;border-radius:50%;background:var(--teal-soft);color:var(--teal);align-items:center;justify-content:center;margin:0 3px;transition:.3s}
     .social a:hover{background:var(--teal);color:#fff}
@@ -367,14 +406,27 @@
       <h1 class="section-title">Our Team</h1>
       <p>The seven people behind APICon 2026 — building Tanzania's API community.</p>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-4"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=15" alt="Tito Oscar"><div class="info"><h4>Tito Oscar</h4><span>Founder &amp; Conference Director</span><p class="bio">Builder behind APICon. Leads vision, partnerships and the overall experience for attendees in Dar es Salaam.</p><div class="social"><a href="https://x.com/" aria-label="X"><i class="lni lni-twitter"></i></a><a href="https://github.com/" aria-label="GitHub"><i class="lni lni-github"></i></a><a href="https://instagram.com/" aria-label="Instagram"><i class="lni lni-instagram"></i></a><a href="https://linkedin.com/" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a></div></div></div></div>
-      <div class="col-md-6 col-lg-4"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=33" alt="Edger"><div class="info"><h4>Edger</h4><span>Head of Programming</span><p class="bio">Curates the talks, workshops and panels. Obsessed with making sure every session ships real, take-home value.</p><div class="social"><a href="https://x.com/" aria-label="X"><i class="lni lni-twitter"></i></a><a href="https://github.com/" aria-label="GitHub"><i class="lni lni-github"></i></a><a href="https://instagram.com/" aria-label="Instagram"><i class="lni lni-instagram"></i></a><a href="https://linkedin.com/" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a></div></div></div></div>
-      <div class="col-md-6 col-lg-4"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=51" alt="Eng. Ndaga"><div class="info"><h4>Eng. Ndaga</h4><span>Technical Lead</span><p class="bio">Senior engineer driving the technical agenda — API design, platform tracks and the live demo infrastructure.</p><div class="social"><a href="https://x.com/" aria-label="X"><i class="lni lni-twitter"></i></a><a href="https://github.com/" aria-label="GitHub"><i class="lni lni-github"></i></a><a href="https://instagram.com/" aria-label="Instagram"><i class="lni lni-instagram"></i></a><a href="https://linkedin.com/" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a></div></div></div></div>
-      <div class="col-md-6 col-lg-4"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=12" alt="Gilbert"><div class="info"><h4>Gilbert</h4><span>Partnerships &amp; Sponsorship</span><p class="bio">Bridges APICon with sponsors and ecosystem partners across East Africa to keep the conference accessible.</p><div class="social"><a href="https://x.com/" aria-label="X"><i class="lni lni-twitter"></i></a><a href="https://github.com/" aria-label="GitHub"><i class="lni lni-github"></i></a><a href="https://instagram.com/" aria-label="Instagram"><i class="lni lni-instagram"></i></a><a href="https://linkedin.com/" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a></div></div></div></div>
-      <div class="col-md-6 col-lg-4"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=20" alt="Fatma"><div class="info"><h4>Fatma</h4><span>Marketing &amp; Communications</span><p class="bio">Owns the APICon brand voice — campaigns, social, press and the developer storytelling around the event.</p><div class="social"><a href="https://x.com/" aria-label="X"><i class="lni lni-twitter"></i></a><a href="https://github.com/" aria-label="GitHub"><i class="lni lni-github"></i></a><a href="https://instagram.com/" aria-label="Instagram"><i class="lni lni-instagram"></i></a><a href="https://linkedin.com/" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a></div></div></div></div>
-      <div class="col-md-6 col-lg-4"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=58" alt="Baraka"><div class="info"><h4>Baraka</h4><span>Operations &amp; Logistics</span><p class="bio">Runs venue, travel, catering and the on-the-ground choreography that keeps every conference day on time.</p><div class="social"><a href="https://x.com/" aria-label="X"><i class="lni lni-twitter"></i></a><a href="https://github.com/" aria-label="GitHub"><i class="lni lni-github"></i></a><a href="https://instagram.com/" aria-label="Instagram"><i class="lni lni-instagram"></i></a><a href="https://linkedin.com/" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a></div></div></div></div>
-      <div class="col-md-6 col-lg-4"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=26" alt="Grace"><div class="info"><h4>Grace</h4><span>Community &amp; Volunteers</span><p class="bio">Grows the APICon community year-round and leads the volunteer crew that powers the event on-site.</p><div class="social"><a href="https://x.com/" aria-label="X"><i class="lni lni-twitter"></i></a><a href="https://github.com/" aria-label="GitHub"><i class="lni lni-github"></i></a><a href="https://instagram.com/" aria-label="Instagram"><i class="lni lni-instagram"></i></a><a href="https://linkedin.com/" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a></div></div></div></div>
+    <div class="team-stage" id="teamStage">
+      <div class="meta">
+        <div class="pager"><b id="teamCurrent">01</b> / <span id="teamTotal">07</span></div>
+        <div class="team-thumbs" id="teamThumbs"></div>
+        <div class="vlabel">Our Team</div>
+      </div>
+      <div class="team-portrait" id="teamPortrait"></div>
+      <div class="team-info">
+        <div>
+          <span class="role-tag" id="teamRole"></span>
+          <h3 id="teamName"></h3>
+          <p class="quote" id="teamBio"></p>
+        </div>
+        <div>
+          <div class="socials" id="teamSocials"></div>
+          <div class="team-nav">
+            <button type="button" id="teamPrev" aria-label="Previous member"><i class="lni lni-arrow-left"></i></button>
+            <button type="button" id="teamNext" aria-label="Next member"><i class="lni lni-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -516,6 +568,77 @@
     document.getElementById('s').textContent = String(s).padStart(2,'0');
   }
   tick(); setInterval(tick, 1000);
+
+  // ===== OUR TEAM slider =====
+  const team = [
+    { name:'Eng. Ndaga', role:'Founder', img:'https://i.pravatar.cc/600?img=51',
+      bio:'Founder of APICon. Sets the vision and leads the team building Tanzania\u2019s home for API builders, platform engineers and developer-experience leaders.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Tito Oscar', role:'Developer', img:'https://i.pravatar.cc/600?img=15',
+      bio:'Developer at APICon. Builds the web platform, attendee tooling and the live-demo infrastructure that powers the conference experience.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Edger', role:'Head of Programming', img:'https://i.pravatar.cc/600?img=33',
+      bio:'Curates the talks, workshops and panels. Obsessed with shipping sessions that leave every attendee with real, take-home value.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Gilbert', role:'Partnerships & Sponsorship', img:'https://i.pravatar.cc/600?img=12',
+      bio:'Bridges APICon with sponsors and ecosystem partners across East Africa to keep the conference accessible and well-resourced.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Fatma', role:'Marketing & Communications', img:'https://i.pravatar.cc/600?img=20',
+      bio:'Owns the APICon brand voice \u2014 campaigns, social, press and the developer storytelling around the event.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Baraka', role:'Operations & Logistics', img:'https://i.pravatar.cc/600?img=58',
+      bio:'Runs venue, travel, catering and the on-the-ground choreography that keeps every conference day on time.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Grace', role:'Community & Volunteers', img:'https://i.pravatar.cc/600?img=26',
+      bio:'Grows the APICon community year-round and leads the volunteer crew that powers the event on-site.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+  ];
+  const portrait = document.getElementById('teamPortrait');
+  const thumbsEl = document.getElementById('teamThumbs');
+  const nameEl = document.getElementById('teamName');
+  const roleEl = document.getElementById('teamRole');
+  const bioEl  = document.getElementById('teamBio');
+  const socialsEl = document.getElementById('teamSocials');
+  const curEl = document.getElementById('teamCurrent');
+  const totEl = document.getElementById('teamTotal');
+  let teamIdx = 0;
+  totEl.textContent = String(team.length).padStart(2,'0');
+  // preload portraits
+  team.forEach((m,i)=>{
+    const img = document.createElement('img');
+    img.src = m.img; img.alt = m.name; img.dataset.i = i;
+    if(i===0) img.classList.add('is-active');
+    portrait.appendChild(img);
+  });
+  function renderThumbs(){
+    thumbsEl.innerHTML = '';
+    team.forEach((m,i)=>{
+      if(i===teamIdx) return;
+      const b = document.createElement('button');
+      b.type='button'; b.setAttribute('aria-label','View '+m.name);
+      b.innerHTML = `<img src="${m.img}" alt="${m.name}">`;
+      b.addEventListener('click',()=>setTeam(i));
+      thumbsEl.appendChild(b);
+    });
+  }
+  function setTeam(i){
+    teamIdx = (i+team.length)%team.length;
+    const m = team[teamIdx];
+    nameEl.textContent = m.name;
+    roleEl.textContent = m.role;
+    bioEl.textContent = '\u201C'+m.bio+'\u201D';
+    curEl.textContent = String(teamIdx+1).padStart(2,'0');
+    [...portrait.querySelectorAll('img')].forEach((img,idx)=>img.classList.toggle('is-active', idx===teamIdx));
+    socialsEl.innerHTML = `
+      <a href="${m.x}" target="_blank" rel="noopener" aria-label="X"><i class="lni lni-twitter"></i></a>
+      <a href="${m.github}" target="_blank" rel="noopener" aria-label="GitHub"><i class="lni lni-github"></i></a>
+      <a href="${m.insta}" target="_blank" rel="noopener" aria-label="Instagram"><i class="lni lni-instagram"></i></a>
+      <a href="${m.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a>`;
+    renderThumbs();
+  }
+  document.getElementById('teamPrev').addEventListener('click',()=>setTeam(teamIdx-1));
+  document.getElementById('teamNext').addEventListener('click',()=>setTeam(teamIdx+1));
+  setTeam(0);
 </script>
 </body>
 </html>

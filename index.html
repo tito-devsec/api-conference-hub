@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>APICon 2026 — Global Conference for API Builders</title>
+  <meta name="description" content="APICon 2026 — three days of talks, workshops and live demos for API builders, platform engineers and developer-experience leaders.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+  <style>
+    :root{
+      --ink:#101427;
+      --teal:#07a3b1;
+      --teal-dark:#058a96;
+      --teal-soft:#e6f6f7;
+      --muted:#6c7a89;
+      --bg-soft:#f7f9fb;
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Poppins',system-ui,sans-serif;color:#3a3f51;line-height:1.7;margin:0}
+    h1,h2,h3,h4,h5,h6{font-family:'Poppins',sans-serif;color:var(--ink);font-weight:700}
+    a{text-decoration:none}
+    .section-padding{padding:90px 0}
+    .section-title-header{margin-bottom:60px}
+    .section-title{font-size:38px;position:relative;display:inline-block;padding-bottom:18px;margin-bottom:14px}
+    .section-title::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:70px;height:3px;background:var(--teal);border-radius:3px}
+    .section-title-header p{color:var(--muted);max-width:600px;margin:0 auto}
+    .btn-common{background:var(--teal);color:#fff;border:none;border-radius:30px;padding:12px 28px;font-weight:600;transition:.3s}
+    .btn-common:hover{background:var(--ink);color:#fff}
+    .btn-border{background:transparent;color:#fff;border:2px solid #fff;border-radius:30px;padding:10px 28px;font-weight:600}
+    .btn-border:hover{background:#fff;color:var(--ink)}
+
+    /* NAV */
+    .scrolling-navbar{background:transparent;padding:18px 0;transition:.3s}
+    .scrolling-navbar.scrolled{background:#fff;box-shadow:0 2px 18px rgba(0,0,0,.08);padding:10px 0}
+    .scrolling-navbar.scrolled .nav-link{color:var(--ink) !important}
+    .navbar-brand img{height:42px}
+    .navbar .nav-link{color:#fff !important;font-weight:500;text-transform:capitalize;padding:.5rem 1rem !important}
+    .navbar .nav-link:hover,.navbar .nav-item.active .nav-link{color:var(--teal) !important}
+    .scrolling-navbar.scrolled .navbar-brand img{filter:none}
+
+    /* CAROUSEL */
+    #main-slide .carousel-item{height:100vh;min-height:600px;background-size:cover;background-position:center;position:relative}
+    #main-slide .carousel-item::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(16,20,39,.85),rgba(7,163,177,.55))}
+    #main-slide .slide1{background-image:url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1900&q=80')}
+    #main-slide .slide2{background-image:url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1900&q=80')}
+    #main-slide .slide3{background-image:url('https://images.unsplash.com/photo-1591115765373-5207764f72e7?auto=format&fit=crop&w=1900&q=80')}
+    .carousel-caption{top:50%;transform:translateY(-50%);bottom:auto;text-align:center}
+    .carousel-caption p{color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-weight:600;margin-bottom:14px}
+    .carousel-caption .heading{color:#fff;font-size:64px;font-weight:800;line-height:1.1;margin-bottom:34px}
+    .carousel-caption .btn{margin:0 6px}
+    .carousel-control-prev,.carousel-control-next{width:60px;opacity:.7}
+    .carousel-control span i{font-size:30px;color:#fff}
+
+    /* COUNTDOWN */
+    .countdown-timer{background:var(--bg-soft)}
+    .heading-count h2{font-size:32px;margin-bottom:30px}
+    .time-count{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+    .time-box{background:#fff;border-radius:14px;padding:24px 30px;min-width:130px;box-shadow:0 8px 24px rgba(16,20,39,.06)}
+    .time-box .num{font-size:42px;font-weight:800;color:var(--teal);display:block;line-height:1}
+    .time-box .lbl{color:var(--muted);text-transform:uppercase;font-size:12px;letter-spacing:2px;margin-top:6px;display:block}
+
+    /* SERVICES */
+    .services-item{background:#fff;border:1px solid #eef0f4;border-radius:14px;padding:36px 28px;text-align:center;transition:.3s;height:100%;margin-bottom:24px}
+    .services-item:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(16,20,39,.08);border-color:transparent}
+    .services-item .icon{width:70px;height:70px;border-radius:50%;background:var(--teal-soft);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px}
+    .services-item h3{font-size:20px;margin-bottom:10px}
+    .services-item h3 a{color:var(--ink)}
+
+    /* ABOUT */
+    #about{background:var(--bg-soft)}
+    .about-item{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 22px rgba(16,20,39,.05);margin-bottom:24px;height:calc(100% - 24px)}
+    .about-item img{width:100%;height:220px;object-fit:cover}
+    .about-text{padding:26px}
+    .about-text h3{font-size:20px;margin-bottom:12px}
+    .btn-rm{padding:8px 20px;font-size:14px;margin-top:8px;display:inline-block}
+
+    /* COUNTER */
+    .counter-section{background:var(--ink);color:#fff}
+    .counter-section .counter{padding:20px}
+    .counter-section .icon{width:70px;height:70px;border-radius:50%;background:rgba(7,163,177,.2);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 16px}
+    .counter-section p{color:#fff;font-weight:600;margin-bottom:4px}
+    .counter-section span{color:#a8b1c2;font-size:14px}
+
+    /* SCHEDULE */
+    .schedule-tab-title .nav-tabs{flex-direction:column;border:none;gap:10px}
+    .schedule-tab-title .nav-link{background:#fff;border:1px solid #eef0f4 !important;border-radius:10px;color:var(--ink);padding:18px 22px;text-align:left}
+    .schedule-tab-title .nav-link h4{margin:0;font-size:18px;color:inherit}
+    .schedule-tab-title .nav-link h5{margin:4px 0 0;font-size:13px;color:var(--muted);font-weight:500}
+    .schedule-tab-title .nav-link.active{background:var(--teal);border-color:var(--teal) !important;color:#fff}
+    .schedule-tab-title .nav-link.active h4,.schedule-tab-title .nav-link.active h5{color:#fff}
+    .table-list{background:#fff;border:1px solid #eef0f4;border-radius:12px;overflow:hidden}
+    .table-list .row-item{display:flex;gap:20px;align-items:center;padding:22px 26px;border-bottom:1px solid #eef0f4}
+    .table-list .row-item:last-child{border-bottom:none}
+    .table-list .speaker-pic img{width:60px;height:60px;border-radius:50%;object-fit:cover}
+    .table-list .speaker-info{flex:1}
+    .table-list .speaker-info h4{font-size:18px;margin:0 0 4px}
+    .table-list .speaker-info p{margin:0;color:var(--muted);font-size:14px}
+    .table-list .time{color:var(--teal);font-weight:600}
+
+    /* SPEAKERS */
+    #team{background:var(--bg-soft)}
+    .speaker-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 22px rgba(16,20,39,.05);margin-bottom:28px;text-align:center;transition:.3s}
+    .speaker-card:hover{transform:translateY(-6px)}
+    .speaker-card img{width:100%;aspect-ratio:1/1;object-fit:cover}
+    .speaker-card .info{padding:20px}
+    .speaker-card h4{margin:0 0 4px;font-size:18px}
+    .speaker-card span{color:var(--muted);font-size:14px}
+    .speaker-card .bio{color:var(--muted);font-size:13.5px;line-height:1.55;margin:10px 0 0;min-height:72px}
+
+    /* OUR TEAM — showcase / slider */
+    #our-team{position:relative;overflow:hidden}
+    #our-team .section-title-header{margin-bottom:28px}
+    .team-stage{position:relative;display:grid;grid-template-columns:200px 1fr 1.1fr;gap:40px;align-items:center;background:#0d1124;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:36px;box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+    .team-stage .meta{display:flex;flex-direction:column;gap:28px}
+    .team-stage .pager{font-size:14px;letter-spacing:3px;color:#a8b1c2}
+    .team-stage .pager b{color:#fff;font-size:22px;font-weight:700}
+    .team-stage .vlabel{writing-mode:vertical-rl;transform:rotate(180deg);text-transform:uppercase;letter-spacing:6px;font-size:12px;color:#6c7a89}
+    .team-thumbs{display:flex;flex-direction:column;gap:12px}
+    .team-thumbs button{all:unset;cursor:pointer;width:84px;height:104px;border-radius:10px;overflow:hidden;opacity:.55;transition:.3s;outline:2px solid transparent}
+    .team-thumbs button:hover{opacity:1}
+    .team-thumbs button.is-active{opacity:1;outline-color:var(--teal)}
+    .team-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+    .team-portrait{position:relative;height:520px;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+    .team-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:translateY(24px) scale(1.02);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+    .team-portrait img.is-active{opacity:1;transform:translateY(0) scale(1)}
+    .team-info .role-tag,.team-info h3,.team-info .quote,.team-info .socials{transition:opacity .45s ease,transform .55s cubic-bezier(.22,.61,.36,1)}
+    .team-info.is-switching .role-tag,.team-info.is-switching h3,.team-info.is-switching .quote,.team-info.is-switching .socials{opacity:0;transform:translateY(12px)}
+    .team-thumbs button{transition:opacity .35s ease,outline-color .35s ease,transform .35s ease}
+    .team-thumbs button.is-active{transform:scale(1.04)}
+
+    /* Scroll reveal */
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity 1.4s cubic-bezier(.22,.61,.36,1),transform 1.4s cubic-bezier(.22,.61,.36,1)}
+    .reveal.in-view{opacity:1;transform:translateY(0)}
+
+    /* Slow smooth scroll */
+    html{scroll-behavior:smooth}
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .team-portrait img,.team-info .role-tag,.team-info h3,.team-info .quote,.team-info .socials,.reveal{transition:none !important;transform:none !important}
+      .reveal{opacity:1 !important}
+    }
+    .team-info{display:flex;flex-direction:column;justify-content:space-between;height:520px;padding:14px 6px}
+    .team-info .role-tag{display:inline-block;align-self:flex-start;background:var(--teal-soft);color:var(--teal);font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:30px;margin-bottom:18px}
+    .team-info h3{color:#fff;font-size:44px;line-height:1.1;margin:0 0 22px}
+    .team-info .quote{color:#cfd5e2;font-size:18px;line-height:1.7;font-style:italic;margin:0 0 26px;max-width:520px}
+    .team-info .socials{display:flex;gap:10px;margin-bottom:28px}
+    .team-info .socials a{display:inline-flex;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.06);color:#fff;align-items:center;justify-content:center;transition:.3s}
+    .team-info .socials a:hover{background:var(--teal);color:#fff;transform:translateY(-2px)}
+    .team-nav{display:flex;gap:14px}
+    .team-nav button{all:unset;cursor:pointer;width:54px;height:54px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:inline-flex;align-items:center;justify-content:center;color:#fff;transition:.3s}
+    .team-nav button:hover{background:var(--teal);border-color:var(--teal);transform:translateY(-2px)}
+    .team-nav button i{font-size:20px}
+    @media (max-width:991px){
+      .team-stage{grid-template-columns:1fr;gap:28px;padding:24px}
+      .team-info,.team-portrait{height:auto}
+      .team-portrait{height:420px}
+      .team-info h3{font-size:32px}
+      .team-stage .meta{flex-direction:row;align-items:center;justify-content:space-between}
+      .team-stage .vlabel{display:none}
+      .team-thumbs{flex-direction:row;flex-wrap:wrap}
+    }
+    .social{margin-top:12px}
+    .social a{display:inline-flex;width:34px;height:34px;border-radius:50%;background:var(--teal-soft);color:var(--teal);align-items:center;justify-content:center;margin:0 3px;transition:.3s}
+    .social a:hover{background:var(--teal);color:#fff}
+
+    /* GALLERY */
+    .gallery-item{position:relative;overflow:hidden;border-radius:12px;margin-bottom:24px}
+    .gallery-item img{width:100%;height:240px;object-fit:cover;transition:.5s}
+    .gallery-item:hover img{transform:scale(1.08)}
+    .gallery-item::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(7,163,177,.7));opacity:0;transition:.3s}
+    .gallery-item:hover::after{opacity:1}
+
+    /* FAQ */
+    #faq{background:var(--bg-soft)}
+    .accordion-item{border:1px solid #eef0f4;border-radius:10px !important;margin-bottom:14px;overflow:hidden}
+    .accordion-button{font-weight:600;color:var(--ink);background:#fff}
+    .accordion-button:not(.collapsed){background:var(--teal);color:#fff;box-shadow:none}
+    .accordion-button:focus{box-shadow:none}
+
+    /* SPONSORS */
+    .sponsor-logo{background:#fff;border:1px solid #eef0f4;border-radius:12px;padding:24px;text-align:center;margin-bottom:24px;transition:.3s;height:120px;display:flex;align-items:center;justify-content:center}
+    .sponsor-logo:hover{border-color:var(--teal);box-shadow:0 8px 24px rgba(7,163,177,.12)}
+    .sponsor-logo img{max-height:64px;max-width:85%;width:auto;object-fit:contain;transition:.3s}
+    .sponsor-logo:hover img{transform:scale(1.05)}
+
+    /* PRICING */
+    #pricing{background:var(--bg-soft)}
+    .pricing-card{background:#fff;border-radius:14px;padding:40px 30px;text-align:center;box-shadow:0 6px 22px rgba(16,20,39,.05);margin-bottom:24px;transition:.3s;position:relative}
+    .pricing-card.featured{background:var(--ink);color:#fff;transform:translateY(-10px)}
+    .pricing-card.featured h3,.pricing-card.featured .price{color:#fff}
+    .pricing-card .badge-pop{position:absolute;top:18px;right:18px;background:var(--teal);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600}
+    .pricing-card h3{margin-bottom:10px}
+    .pricing-card .price{font-size:48px;font-weight:800;color:var(--teal);margin:18px 0}
+    .pricing-card .price small{font-size:16px;color:var(--muted);font-weight:500}
+    .pricing-card ul{list-style:none;padding:0;margin:0 0 24px}
+    .pricing-card li{padding:8px 0;border-bottom:1px solid rgba(108,122,137,.15)}
+    .pricing-card.featured li{border-color:rgba(255,255,255,.12)}
+
+    /* CONTACT */
+    #contact{background:#fff}
+    .contact-form input,.contact-form textarea{border:1px solid #eef0f4;border-radius:10px;padding:14px 18px;width:100%;margin-bottom:16px;font-family:inherit}
+    .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--teal)}
+    .map-area iframe{width:100%;height:380px;border:0;border-radius:14px}
+
+    /* FOOTER */
+    footer{background:var(--ink);color:#a8b1c2;padding:60px 0 20px}
+    footer h5{color:#fff;margin-bottom:18px;font-size:16px;text-transform:uppercase;letter-spacing:2px}
+    footer a{color:#a8b1c2;display:block;padding:4px 0}
+    footer a:hover{color:var(--teal)}
+    footer .brand img{height:46px;filter:brightness(0) invert(1);margin-bottom:14px}
+    .copyright{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;margin-top:40px;text-align:center;font-size:14px}
+
+    @media (max-width:767px){
+      .carousel-caption .heading{font-size:36px}
+      #main-slide .carousel-item{height:80vh;min-height:500px}
+      .section-title{font-size:28px}
+      .section-padding{padding:60px 0}
+    }
+  </style>
+</head>
+<body>
+<!-- HEADER + CAROUSEL -->
+<header id="header-wrap">
+  <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
+    <div class="container">
+      <a href="#header-wrap" class="navbar-brand"><img src="logo.png" alt="APICon"></a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#main-navbar"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="main-navbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item active"><a class="nav-link" href="#header-wrap">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#schedules">Schedules</a></li>
+          <li class="nav-item"><a class="nav-link" href="#team">Speakers</a></li>
+          <li class="nav-item"><a class="nav-link" href="#our-team">Our Team</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sponsors">Sponsors</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main-slide" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-bs-target="#main-slide" data-bs-slide-to="0" class="active"></li>
+      <li data-bs-target="#main-slide" data-bs-slide-to="1"></li>
+      <li data-bs-target="#main-slide" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active slide1">
+        <div class="carousel-caption">
+          <div class="container">
+            <p class="animate__animated animate__fadeInUp">Global Event for API Builders</p>
+            <h1 class="heading animate__animated animate__fadeInDown">The API Conference</h1>
+            <a href="#pricing" class="btn btn-common btn-lg">Get Ticket</a>
+            <a href="#about" class="btn btn-border btn-lg">Explore More</a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item slide2">
+        <div class="carousel-caption">
+          <div class="container">
+            <p>October 12 – 14, 2026</p>
+            <h1 class="heading">28 Amazing Speakers</h1>
+            <a href="#team" class="btn btn-border btn-lg">Meet the Lineup</a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item slide3">
+        <div class="carousel-caption">
+          <div class="container">
+            <p>Dar es Salaam · Tanzania</p>
+            <h1 class="heading">Book Your Seat Now!</h1>
+            <a href="#pricing" class="btn btn-common btn-lg">Reserve Tickets</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#main-slide" data-bs-slide="prev"><span class="carousel-control"><i class="lni lni-chevron-left"></i></span></a>
+    <a class="carousel-control-next" href="#main-slide" data-bs-slide="next"><span class="carousel-control"><i class="lni lni-chevron-right"></i></span></a>
+  </div>
+</header>
+
+<!-- COUNTDOWN -->
+<section class="countdown-timer section-padding">
+  <div class="container text-center">
+    <div class="heading-count"><h2>Event Will Start In</h2></div>
+    <div class="time-count">
+      <div class="time-box"><span class="num" id="d">00</span><span class="lbl">Days</span></div>
+      <div class="time-box"><span class="num" id="h">00</span><span class="lbl">Hours</span></div>
+      <div class="time-box"><span class="num" id="m">00</span><span class="lbl">Minutes</span></div>
+      <div class="time-box"><span class="num" id="s">00</span><span class="lbl">Seconds</span></div>
+    </div>
+    <a href="#pricing" class="btn btn-common">Add to My Calendar</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services section-padding">
+  <div class="container">
+    <div class="section-title-header text-center">
+      <h1 class="section-title">Why You Choose Us?</h1>
+      <p>Three days of deep-dive sessions, hands-on labs and the people shaping the future of APIs.</p>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-lg-4"><div class="services-item"><div class="icon"><i class="lni lni-heart"></i></div><div class="services-content"><h3><a href="#">Get Inspired</a></h3><p>Visionary keynotes from the engineers shipping the world's most-used APIs.</p></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="services-item"><div class="icon"><i class="lni lni-users"></i></div><div class="services-content"><h3><a href="#">Meet New Faces</a></h3><p>Connect with 2,000+ developers, founders and platform leaders from 40+ countries.</p></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="services-item"><div class="icon"><i class="lni lni-bolt"></i></div><div class="services-content"><h3><a href="#">Fresh Tech Insights</a></h3><p>Real-world case studies on gRPC, GraphQL, OpenAPI, AI gateways and more.</p></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="services-item"><div class="icon"><i class="lni lni-coffee-cup"></i></div><div class="services-content"><h3><a href="#">Networking Sessions</a></h3><p>Curated meet-ups, evening mixers and rooftop dinners across the venue.</p></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="services-item"><div class="icon"><i class="lni lni-world"></i></div><div class="services-content"><h3><a href="#">Global Event</a></h3><p>Truly international lineup — speakers and attendees from every continent.</p></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="services-item"><div class="icon"><i class="lni lni-gift"></i></div><div class="services-content"><h3><a href="#">Free Swag</a></h3><p>Limited-edition tees, stickers, and exclusive partner credits for every attendee.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section-padding">
+  <div class="container">
+    <div class="section-title-header text-center">
+      <h1 class="section-title">About This Event</h1>
+      <p>The global conference for API builders, platform engineers and DX leaders.</p>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-lg-4"><div class="about-item"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80" alt=""><div class="about-text"><h3><a href="#">Wanna Know Our Mission?</a></h3><p>To bring together the people building the connective tissue of the modern internet.</p><a class="btn btn-common btn-rm" href="#">Read More</a></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="about-item"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=700&q=80" alt=""><div class="about-text"><h3><a href="#">What you will learn?</a></h3><p>API design patterns, platform engineering, DX metrics, AI-native gateways and more.</p><a class="btn btn-common btn-rm" href="#">Read More</a></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="about-item"><img src="https://images.unsplash.com/photo-1560439514-4e9645039924?auto=format&fit=crop&w=700&q=80" alt=""><div class="about-text"><h3><a href="#">What are the benefits?</a></h3><p>Hands-on workshops, recordings, partner credits and a year-long community pass.</p><a class="btn btn-common btn-rm" href="#">Read More</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTER -->
+<section class="counter-section section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-3 text-center"><div class="counter"><div class="icon"><i class="lni lni-map-marker"></i></div><p>JNICC Posta</p><span>Dar es Salaam, Tanzania</span></div></div>
+      <div class="col-md-6 col-lg-3 text-center"><div class="counter"><div class="icon"><i class="lni lni-timer"></i></div><p>October 12 – 14, 2026</p><span>09:00 AM – 06:00 PM</span></div></div>
+      <div class="col-md-6 col-lg-3 text-center"><div class="counter"><div class="icon"><i class="lni lni-users"></i></div><p>340 Available Seats</p><span>Hurry — early-bird ends soon</span></div></div>
+      <div class="col-md-6 col-lg-3 text-center"><div class="counter"><div class="icon"><i class="lni lni-coffee-cup"></i></div><p>Free Lunch & Snacks</p><span>All three days included</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedules" class="schedule section-padding">
+  <div class="container">
+    <div class="section-title-header text-center">
+      <h1 class="section-title">Event Schedules</h1>
+      <p>Three days, four stages, one ecosystem. Pick a day to see the full program.</p>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="schedule-tab-title">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#day1"><div><h4>Monday</h4><h5>12 October</h5></div></a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#day2"><div><h4>Tuesday</h4><h5>13 October</h5></div></a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#day3"><div><h4>Wednesday</h4><h5>14 October</h5></div></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="day1">
+            <div class="table-list">
+              <div class="row-item"><div class="speaker-pic"><img src="https://i.pravatar.cc/150?img=12" alt=""></div><div class="speaker-info"><h4>The next decade of APIs</h4><p>Amelia Choi · Principal Engineer, Stripe</p></div><div class="time">09:30</div></div>
+              <div class="row-item"><div class="speaker-pic"><img src="https://i.pravatar.cc/150?img=32" alt=""></div><div class="speaker-info"><h4>Workshop: Designing resilient gRPC services</h4><p>David Mensah · VP Platform, GitHub</p></div><div class="time">14:00</div></div>
+              <div class="row-item"><div class="speaker-pic"><img src="https://i.pravatar.cc/150?img=47" alt=""></div><div class="speaker-info"><h4>OpenAPI in 2026: what changed</h4><p>Priya Raman · Staff DX, Cloudflare</p></div><div class="time">16:30</div></div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="day2">
+            <div class="table-list">
+              <div class="row-item"><div class="speaker-pic"><img src="https://i.pravatar.cc/150?img=68" alt=""></div><div class="speaker-info"><h4>Building developer platforms that scale</h4><p>Lukas Berg · CTO, Linear</p></div><div class="time">10:00</div></div>
+              <div class="row-item"><div class="speaker-pic"><img src="https://i.pravatar.cc/150?img=23" alt=""></div><div class="speaker-info"><h4>Webhooks at planetary scale</h4><p>Sara Okonkwo · Principal, Vercel</p></div><div class="time">13:30</div></div>
+              <div class="row-item"><div class="speaker-pic"><img src="https://i.pravatar.cc/150?img=14" alt=""></div><div class="speaker-info"><h4>SDK ergonomics that developers love</h4><p>Marco Rivera · Head of DX, Twilio</p></div><div class="time">15:45</div></div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="day3">
+            <div class="table-list">
+              <div class="row-item"><div class="speaker-pic"><img src="https://i.pravatar.cc/150?img=5" alt=""></div><div class="speaker-info"><h4>AI-native API gateways</h4><p>Hannah Liu · Founder, GatewayAI</p></div><div class="time">09:00</div></div>
+              <div class="row-item"><div class="speaker-pic"><img src="https://i.pravatar.cc/150?img=51" alt=""></div><div class="speaker-info"><h4>Panel: The future of authentication</h4><p>OAuth WG members</p></div><div class="time">11:30</div></div>
+              <div class="row-item"><div class="speaker-pic"><img src="https://i.pravatar.cc/150?img=33" alt=""></div><div class="speaker-info"><h4>Closing keynote &amp; afterparty</h4><p>APICon Team</p></div><div class="time">17:00</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section id="team" class="section-padding">
+  <div class="container">
+    <div class="section-title-header text-center">
+      <h1 class="section-title">Featured Speakers</h1>
+      <p>The engineers, founders and architects shaping the API ecosystem.</p>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-lg-3"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=12" alt=""><div class="info"><h4>Amelia Choi</h4><span>Principal Engineer, Stripe</span><div class="social"><a href="#"><i class="lni lni-twitter"></i></a><a href="#"><i class="lni lni-linkedin"></i></a><a href="#"><i class="lni lni-github"></i></a></div></div></div></div>
+      <div class="col-md-6 col-lg-3"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=32" alt=""><div class="info"><h4>David Mensah</h4><span>VP Platform, GitHub</span><div class="social"><a href="#"><i class="lni lni-twitter"></i></a><a href="#"><i class="lni lni-linkedin"></i></a><a href="#"><i class="lni lni-github"></i></a></div></div></div></div>
+      <div class="col-md-6 col-lg-3"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=47" alt=""><div class="info"><h4>Priya Raman</h4><span>Staff DX, Cloudflare</span><div class="social"><a href="#"><i class="lni lni-twitter"></i></a><a href="#"><i class="lni lni-linkedin"></i></a><a href="#"><i class="lni lni-github"></i></a></div></div></div></div>
+      <div class="col-md-6 col-lg-3"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=68" alt=""><div class="info"><h4>Lukas Berg</h4><span>CTO, Linear</span><div class="social"><a href="#"><i class="lni lni-twitter"></i></a><a href="#"><i class="lni lni-linkedin"></i></a><a href="#"><i class="lni lni-github"></i></a></div></div></div></div>
+      <div class="col-md-6 col-lg-3"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=23" alt=""><div class="info"><h4>Sara Okonkwo</h4><span>Principal, Vercel</span><div class="social"><a href="#"><i class="lni lni-twitter"></i></a><a href="#"><i class="lni lni-linkedin"></i></a><a href="#"><i class="lni lni-github"></i></a></div></div></div></div>
+      <div class="col-md-6 col-lg-3"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=14" alt=""><div class="info"><h4>Marco Rivera</h4><span>Head of DX, Twilio</span><div class="social"><a href="#"><i class="lni lni-twitter"></i></a><a href="#"><i class="lni lni-linkedin"></i></a><a href="#"><i class="lni lni-github"></i></a></div></div></div></div>
+      <div class="col-md-6 col-lg-3"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=5" alt=""><div class="info"><h4>Hannah Liu</h4><span>Founder, GatewayAI</span><div class="social"><a href="#"><i class="lni lni-twitter"></i></a><a href="#"><i class="lni lni-linkedin"></i></a><a href="#"><i class="lni lni-github"></i></a></div></div></div></div>
+      <div class="col-md-6 col-lg-3"><div class="speaker-card"><img src="https://i.pravatar.cc/400?img=51" alt=""><div class="info"><h4>Tomás Almeida</h4><span>OAuth WG Co-chair</span><div class="social"><a href="#"><i class="lni lni-twitter"></i></a><a href="#"><i class="lni lni-linkedin"></i></a><a href="#"><i class="lni lni-github"></i></a></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<!-- OUR TEAM -->
+<section id="our-team" class="section-padding" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="section-title-header text-center">
+      <h1 class="section-title">Our Team</h1>
+      <p>The seven people behind APICon 2026 — building Tanzania's API community.</p>
+    </div>
+    <div class="team-stage" id="teamStage">
+      <div class="meta">
+        <div class="pager"><b id="teamCurrent">01</b> / <span id="teamTotal">07</span></div>
+        <div class="team-thumbs" id="teamThumbs"></div>
+        <div class="vlabel">Our Team</div>
+      </div>
+      <div class="team-portrait" id="teamPortrait"></div>
+      <div class="team-info">
+        <div>
+          <span class="role-tag" id="teamRole"></span>
+          <h3 id="teamName"></h3>
+          <p class="quote" id="teamBio"></p>
+        </div>
+        <div>
+          <div class="socials" id="teamSocials"></div>
+          <div class="team-nav">
+            <button type="button" id="teamPrev" aria-label="Previous member"><i class="lni lni-arrow-left"></i></button>
+            <button type="button" id="teamNext" aria-label="Next member"><i class="lni lni-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section-padding">
+  <div class="container">
+    <div class="section-title-header text-center">
+      <h1 class="section-title">Event Gallery</h1>
+      <p>Highlights from past editions of APICon around the world.</p>
+    </div>
+    <div class="row">
+      <div class="col-md-4"><div class="gallery-item"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=700&q=80" alt=""></div></div>
+      <div class="col-md-4"><div class="gallery-item"><img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=700&q=80" alt=""></div></div>
+      <div class="col-md-4"><div class="gallery-item"><img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?auto=format&fit=crop&w=700&q=80" alt=""></div></div>
+      <div class="col-md-4"><div class="gallery-item"><img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=700&q=80" alt=""></div></div>
+      <div class="col-md-4"><div class="gallery-item"><img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=700&q=80" alt=""></div></div>
+      <div class="col-md-4"><div class="gallery-item"><img src="https://images.unsplash.com/photo-1559223607-a43c990c692c?auto=format&fit=crop&w=700&q=80" alt=""></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section-padding">
+  <div class="container">
+    <div class="section-title-header text-center">
+      <h1 class="section-title">Frequently Asked Questions</h1>
+      <p>Everything you need to know before registering for APICon 2026.</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="accordion" id="faqAcc">
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#q1">Where is APICon 2026 being held?</button></h2><div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAcc"><div class="accordion-body">At JNICC Posta in Dar es Salaam, Tanzania — the Julius Nyerere International Convention Centre, a premier venue in the heart of the city.</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q2">Will sessions be recorded?</button></h2><div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">Yes — every talk and panel is professionally recorded and made available to all ticket holders within 7 days of the event.</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q3">Do you offer student or community discounts?</button></h2><div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">We offer 50% off for verified students and free diversity scholarships. Apply via the contact form below.</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q4">Can I refund or transfer my ticket?</button></h2><div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">Full refunds are available up to 30 days before the event. After that, tickets are transferable to another attendee.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORS -->
+<section id="sponsors" class="section-padding">
+  <div class="container">
+    <div class="section-title-header text-center">
+      <h1 class="section-title">Our Sponsors</h1>
+      <p>The companies powering APICon 2026.</p>
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-3"><div class="sponsor-logo"><img src="sponsors/pepsi.png" alt="Pepsi"></div></div>
+      <div class="col-6 col-md-3"><div class="sponsor-logo"><img src="sponsors/vodacom.png" alt="Vodacom Tanzania"></div></div>
+      <div class="col-6 col-md-3"><div class="sponsor-logo"><img src="sponsors/ibm.png" alt="IBM"></div></div>
+      <div class="col-6 col-md-3"><div class="sponsor-logo"><img src="sponsors/redbull.png" alt="Red Bull"></div></div>
+      <div class="col-6 col-md-3"><div class="sponsor-logo"><img src="sponsors/amazon.png" alt="Amazon"></div></div>
+      <div class="col-6 col-md-3"><div class="sponsor-logo"><img src="sponsors/google.png" alt="Google"></div></div>
+      <div class="col-6 col-md-3"><div class="sponsor-logo"><img src="sponsors/offsec.png" alt="OffSec"></div></div>
+      <div class="col-6 col-md-3"><div class="sponsor-logo"><img src="sponsors/postman.png" alt="Postman"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section-padding">
+  <div class="container">
+    <div class="section-title-header text-center">
+      <h1 class="section-title">Pricing Plans</h1>
+      <p>Choose the pass that fits your goals — all include full access to talks and recordings.</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4"><div class="pricing-card"><h3>Community</h3><div class="price">$199<small>/pass</small></div><ul><li>All keynote talks</li><li>Sponsor expo access</li><li>Recordings post-event</li><li>Networking lounge</li></ul><a href="#" class="btn btn-common">Buy Ticket</a></div></div>
+      <div class="col-md-6 col-lg-4"><div class="pricing-card featured"><span class="badge-pop">Popular</span><h3>Pro</h3><div class="price">$499<small>/pass</small></div><ul><li>Everything in Community</li><li>All workshops &amp; labs</li><li>Speaker meet-and-greet</li><li>Evening mixers + dinner</li></ul><a href="#" class="btn btn-common">Buy Ticket</a></div></div>
+      <div class="col-md-6 col-lg-4"><div class="pricing-card"><h3>Team</h3><div class="price">$1,899<small>/5 passes</small></div><ul><li>5 Pro passes</li><li>Reserved team seating</li><li>Private team workshop</li><li>Logo on attendee page</li></ul><a href="#" class="btn btn-common">Buy Ticket</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT + MAP -->
+<section id="contact" class="section-padding">
+  <div class="container">
+    <div class="section-title-header text-center">
+      <h1 class="section-title">Get In Touch</h1>
+      <p>Questions about tickets, sponsorship or speaking? Send us a note.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Email Address" required>
+          <input type="text" placeholder="Subject">
+          <textarea rows="5" placeholder="Your Message"></textarea>
+          <button type="submit" class="btn btn-common">Send Message</button>
+        </form>
+      </div>
+      <div class="col-lg-6">
+        <div class="map-area">
+          <iframe src="https://maps.google.com/maps?q=JNICC%20Posta%2C%20Dar%20es%20Salaam&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4 brand">
+        <img src="logo.png" alt="APICon">
+        <p>The global conference for API builders. Three days of talks, workshops, and live demos in Dar es Salaam, Tanzania.</p>
+      </div>
+      <div class="col-6 col-md-2"><h5>Event</h5><a href="#about">About</a><a href="#schedules">Schedules</a><a href="#team">Speakers</a></div>
+      <div class="col-6 col-md-2"><h5>Info</h5><a href="#gallery">Gallery</a><a href="#sponsors">Sponsors</a><a href="#faq">FAQ</a></div>
+      <div class="col-md-4"><h5>Contact</h5><p>hello@apicon.dev<br>JNICC Posta, Dar es Salaam · Tanzania</p>
+        <div class="social"><a href="#"><i class="lni lni-twitter"></i></a><a href="#"><i class="lni lni-linkedin"></i></a><a href="#"><i class="lni lni-github"></i></a><a href="#"><i class="lni lni-youtube"></i></a></div>
+      </div>
+    </div>
+    <div class="copyright">© 2026 APICon. All rights reserved. · Developed with ❤️ by <a href="https://titodevsec.online" target="_blank" rel="noopener" style="color:var(--teal);display:inline;padding:0;font-weight:600">Titodevsec</a></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Navbar scroll effect
+  const nav = document.querySelector('.scrolling-navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Countdown
+  const target = new Date('2026-10-12T09:00:00').getTime();
+  function tick(){
+    const now = Date.now(), diff = Math.max(0, target - now);
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor(diff%86400000/3600000);
+    const m = Math.floor(diff%3600000/60000);
+    const s = Math.floor(diff%60000/1000);
+    document.getElementById('d').textContent = String(d).padStart(2,'0');
+    document.getElementById('h').textContent = String(h).padStart(2,'0');
+    document.getElementById('m').textContent = String(m).padStart(2,'0');
+    document.getElementById('s').textContent = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+
+  // ===== OUR TEAM slider =====
+  const team = [
+    { name:'Eng. Ndaga', role:'Founder', img:'https://i.pravatar.cc/600?img=51',
+      bio:'Founder of APICon. Sets the vision and leads the team building Tanzania\u2019s home for API builders, platform engineers and developer-experience leaders.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Tito Oscar', role:'Developer', img:'https://i.pravatar.cc/600?img=15',
+      bio:'Developer at APICon. Builds the web platform, attendee tooling and the live-demo infrastructure that powers the conference experience.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Edger', role:'Head of Programming', img:'https://i.pravatar.cc/600?img=33',
+      bio:'Curates the talks, workshops and panels. Obsessed with shipping sessions that leave every attendee with real, take-home value.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Gilbert', role:'Partnerships & Sponsorship', img:'https://i.pravatar.cc/600?img=12',
+      bio:'Bridges APICon with sponsors and ecosystem partners across East Africa to keep the conference accessible and well-resourced.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Fatma', role:'Marketing & Communications', img:'https://i.pravatar.cc/600?img=20',
+      bio:'Owns the APICon brand voice \u2014 campaigns, social, press and the developer storytelling around the event.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Baraka', role:'Operations & Logistics', img:'https://i.pravatar.cc/600?img=58',
+      bio:'Runs venue, travel, catering and the on-the-ground choreography that keeps every conference day on time.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Grace', role:'Community & Volunteers', img:'https://i.pravatar.cc/600?img=26',
+      bio:'Grows the APICon community year-round and leads the volunteer crew that powers the event on-site.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+  ];
+  const portrait = document.getElementById('teamPortrait');
+  const thumbsEl = document.getElementById('teamThumbs');
+  const nameEl = document.getElementById('teamName');
+  const roleEl = document.getElementById('teamRole');
+  const bioEl  = document.getElementById('teamBio');
+  const socialsEl = document.getElementById('teamSocials');
+  const curEl = document.getElementById('teamCurrent');
+  const totEl = document.getElementById('teamTotal');
+  let teamIdx = 0;
+  totEl.textContent = String(team.length).padStart(2,'0');
+  // preload portraits
+  team.forEach((m,i)=>{
+    const img = document.createElement('img');
+    img.src = m.img; img.alt = m.name; img.dataset.i = i;
+    if(i===0) img.classList.add('is-active');
+    portrait.appendChild(img);
+  });
+  function renderThumbs(){
+    thumbsEl.innerHTML = '';
+    team.forEach((m,i)=>{
+      if(i===teamIdx) return;
+      const b = document.createElement('button');
+      b.type='button'; b.setAttribute('aria-label','View '+m.name);
+      b.innerHTML = `<img src="${m.img}" alt="${m.name}">`;
+      b.addEventListener('click',()=>setTeam(i));
+      thumbsEl.appendChild(b);
+    });
+  }
+  function setTeam(i){
+    teamIdx = (i+team.length)%team.length;
+    const m = team[teamIdx];
+    const infoEl = document.querySelector('#our-team .team-info');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const apply = ()=>{
+      nameEl.textContent = m.name;
+      roleEl.textContent = m.role;
+      bioEl.textContent = '\u201C'+m.bio+'\u201D';
+      curEl.textContent = String(teamIdx+1).padStart(2,'0');
+      [...portrait.querySelectorAll('img')].forEach((img,idx)=>img.classList.toggle('is-active', idx===teamIdx));
+      socialsEl.innerHTML = `
+      <a href="${m.x}" target="_blank" rel="noopener" aria-label="X"><i class="lni lni-twitter"></i></a>
+      <a href="${m.github}" target="_blank" rel="noopener" aria-label="GitHub"><i class="lni lni-github"></i></a>
+      <a href="${m.insta}" target="_blank" rel="noopener" aria-label="Instagram"><i class="lni lni-instagram"></i></a>
+      <a href="${m.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a>`;
+      renderThumbs();
+      requestAnimationFrame(()=>infoEl && infoEl.classList.remove('is-switching'));
+    };
+    if(infoEl && !reduce){
+      infoEl.classList.add('is-switching');
+      setTimeout(apply, 320);
+    } else {
+      apply();
+    }
+  }
+  document.getElementById('teamPrev').addEventListener('click',()=>setTeam(teamIdx-1));
+  document.getElementById('teamNext').addEventListener('click',()=>setTeam(teamIdx+1));
+  setTeam(0);
+
+  /* Scroll reveal: tag major blocks and observe */
+  (function(){
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const targets = document.querySelectorAll('section .section-title-header, section .row > [class*="col-"], .team-stage, .pricing-card, .speaker-card');
+    targets.forEach(el=>el.classList.add('reveal'));
+    if(reduce || !('IntersectionObserver' in window)){
+      targets.forEach(el=>el.classList.add('in-view'));
+      return;
+    }
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+    },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    targets.forEach(el=>io.observe(el));
+  })();
+
+  /* Slow smooth scroll for in-page anchor links */
+  (function(){
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce) return;
+    const DURATION = 1600; // slow
+    const easeInOutCubic = t => t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        const id = a.getAttribute('href');
+        if(!id || id === '#' || id.length < 2) return;
+        const target = document.querySelector(id);
+        if(!target) return;
+        ev.preventDefault();
+        const startY = window.scrollY;
+        const endY = target.getBoundingClientRect().top + startY - 70;
+        const startT = performance.now();
+        function step(now){
+          const p = Math.min(1,(now-startT)/DURATION);
+          window.scrollTo(0, startY + (endY-startY)*easeInOutCubic(p));
+          if(p<1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    });
+  })();
+</script>
+</body>
+</html>

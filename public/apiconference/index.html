@@ -568,6 +568,77 @@
     document.getElementById('s').textContent = String(s).padStart(2,'0');
   }
   tick(); setInterval(tick, 1000);
+
+  // ===== OUR TEAM slider =====
+  const team = [
+    { name:'Eng. Ndaga', role:'Founder', img:'https://i.pravatar.cc/600?img=51',
+      bio:'Founder of APICon. Sets the vision and leads the team building Tanzania\u2019s home for API builders, platform engineers and developer-experience leaders.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Tito Oscar', role:'Developer', img:'https://i.pravatar.cc/600?img=15',
+      bio:'Developer at APICon. Builds the web platform, attendee tooling and the live-demo infrastructure that powers the conference experience.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Edger', role:'Head of Programming', img:'https://i.pravatar.cc/600?img=33',
+      bio:'Curates the talks, workshops and panels. Obsessed with shipping sessions that leave every attendee with real, take-home value.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Gilbert', role:'Partnerships & Sponsorship', img:'https://i.pravatar.cc/600?img=12',
+      bio:'Bridges APICon with sponsors and ecosystem partners across East Africa to keep the conference accessible and well-resourced.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Fatma', role:'Marketing & Communications', img:'https://i.pravatar.cc/600?img=20',
+      bio:'Owns the APICon brand voice \u2014 campaigns, social, press and the developer storytelling around the event.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Baraka', role:'Operations & Logistics', img:'https://i.pravatar.cc/600?img=58',
+      bio:'Runs venue, travel, catering and the on-the-ground choreography that keeps every conference day on time.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+    { name:'Grace', role:'Community & Volunteers', img:'https://i.pravatar.cc/600?img=26',
+      bio:'Grows the APICon community year-round and leads the volunteer crew that powers the event on-site.',
+      x:'https://x.com/', github:'https://github.com/', insta:'https://instagram.com/', linkedin:'https://linkedin.com/' },
+  ];
+  const portrait = document.getElementById('teamPortrait');
+  const thumbsEl = document.getElementById('teamThumbs');
+  const nameEl = document.getElementById('teamName');
+  const roleEl = document.getElementById('teamRole');
+  const bioEl  = document.getElementById('teamBio');
+  const socialsEl = document.getElementById('teamSocials');
+  const curEl = document.getElementById('teamCurrent');
+  const totEl = document.getElementById('teamTotal');
+  let teamIdx = 0;
+  totEl.textContent = String(team.length).padStart(2,'0');
+  // preload portraits
+  team.forEach((m,i)=>{
+    const img = document.createElement('img');
+    img.src = m.img; img.alt = m.name; img.dataset.i = i;
+    if(i===0) img.classList.add('is-active');
+    portrait.appendChild(img);
+  });
+  function renderThumbs(){
+    thumbsEl.innerHTML = '';
+    team.forEach((m,i)=>{
+      if(i===teamIdx) return;
+      const b = document.createElement('button');
+      b.type='button'; b.setAttribute('aria-label','View '+m.name);
+      b.innerHTML = `<img src="${m.img}" alt="${m.name}">`;
+      b.addEventListener('click',()=>setTeam(i));
+      thumbsEl.appendChild(b);
+    });
+  }
+  function setTeam(i){
+    teamIdx = (i+team.length)%team.length;
+    const m = team[teamIdx];
+    nameEl.textContent = m.name;
+    roleEl.textContent = m.role;
+    bioEl.textContent = '\u201C'+m.bio+'\u201D';
+    curEl.textContent = String(teamIdx+1).padStart(2,'0');
+    [...portrait.querySelectorAll('img')].forEach((img,idx)=>img.classList.toggle('is-active', idx===teamIdx));
+    socialsEl.innerHTML = `
+      <a href="${m.x}" target="_blank" rel="noopener" aria-label="X"><i class="lni lni-twitter"></i></a>
+      <a href="${m.github}" target="_blank" rel="noopener" aria-label="GitHub"><i class="lni lni-github"></i></a>
+      <a href="${m.insta}" target="_blank" rel="noopener" aria-label="Instagram"><i class="lni lni-instagram"></i></a>
+      <a href="${m.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a>`;
+    renderThumbs();
+  }
+  document.getElementById('teamPrev').addEventListener('click',()=>setTeam(teamIdx-1));
+  document.getElementById('teamNext').addEventListener('click',()=>setTeam(teamIdx+1));
+  setTeam(0);
 </script>
 </body>
 </html>

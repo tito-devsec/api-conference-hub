@@ -125,8 +125,25 @@
     .team-thumbs button.is-active{opacity:1;outline-color:var(--teal)}
     .team-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
     .team-portrait{position:relative;height:520px;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
-    .team-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
-    .team-portrait img.is-active{opacity:1;transform:translateY(0)}
+    .team-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:translateY(24px) scale(1.02);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+    .team-portrait img.is-active{opacity:1;transform:translateY(0) scale(1)}
+    .team-info .role-tag,.team-info h3,.team-info .quote,.team-info .socials{transition:opacity .45s ease,transform .55s cubic-bezier(.22,.61,.36,1)}
+    .team-info.is-switching .role-tag,.team-info.is-switching h3,.team-info.is-switching .quote,.team-info.is-switching .socials{opacity:0;transform:translateY(12px)}
+    .team-thumbs button{transition:opacity .35s ease,outline-color .35s ease,transform .35s ease}
+    .team-thumbs button.is-active{transform:scale(1.04)}
+
+    /* Scroll reveal */
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity 1.4s cubic-bezier(.22,.61,.36,1),transform 1.4s cubic-bezier(.22,.61,.36,1)}
+    .reveal.in-view{opacity:1;transform:translateY(0)}
+
+    /* Slow smooth scroll */
+    html{scroll-behavior:smooth}
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .team-portrait img,.team-info .role-tag,.team-info h3,.team-info .quote,.team-info .socials,.reveal{transition:none !important;transform:none !important}
+      .reveal{opacity:1 !important}
+    }
     .team-info{display:flex;flex-direction:column;justify-content:space-between;height:520px;padding:14px 6px}
     .team-info .role-tag{display:inline-block;align-self:flex-start;background:var(--teal-soft);color:var(--teal);font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:30px;margin-bottom:18px}
     .team-info h3{color:#fff;font-size:44px;line-height:1.1;margin:0 0 22px}
@@ -622,21 +639,73 @@
   function setTeam(i){
     teamIdx = (i+team.length)%team.length;
     const m = team[teamIdx];
-    nameEl.textContent = m.name;
-    roleEl.textContent = m.role;
-    bioEl.textContent = '\u201C'+m.bio+'\u201D';
-    curEl.textContent = String(teamIdx+1).padStart(2,'0');
-    [...portrait.querySelectorAll('img')].forEach((img,idx)=>img.classList.toggle('is-active', idx===teamIdx));
-    socialsEl.innerHTML = `
+    const infoEl = document.querySelector('#our-team .team-info');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const apply = ()=>{
+      nameEl.textContent = m.name;
+      roleEl.textContent = m.role;
+      bioEl.textContent = '\u201C'+m.bio+'\u201D';
+      curEl.textContent = String(teamIdx+1).padStart(2,'0');
+      [...portrait.querySelectorAll('img')].forEach((img,idx)=>img.classList.toggle('is-active', idx===teamIdx));
+      socialsEl.innerHTML = `
       <a href="${m.x}" target="_blank" rel="noopener" aria-label="X"><i class="lni lni-twitter"></i></a>
       <a href="${m.github}" target="_blank" rel="noopener" aria-label="GitHub"><i class="lni lni-github"></i></a>
       <a href="${m.insta}" target="_blank" rel="noopener" aria-label="Instagram"><i class="lni lni-instagram"></i></a>
       <a href="${m.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a>`;
-    renderThumbs();
+      renderThumbs();
+      requestAnimationFrame(()=>infoEl && infoEl.classList.remove('is-switching'));
+    };
+    if(infoEl && !reduce){
+      infoEl.classList.add('is-switching');
+      setTimeout(apply, 320);
+    } else {
+      apply();
+    }
   }
   document.getElementById('teamPrev').addEventListener('click',()=>setTeam(teamIdx-1));
   document.getElementById('teamNext').addEventListener('click',()=>setTeam(teamIdx+1));
   setTeam(0);
+
+  /* Scroll reveal: tag major blocks and observe */
+  (function(){
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const targets = document.querySelectorAll('section .section-title-header, section .row > [class*="col-"], .team-stage, .pricing-card, .speaker-card');
+    targets.forEach(el=>el.classList.add('reveal'));
+    if(reduce || !('IntersectionObserver' in window)){
+      targets.forEach(el=>el.classList.add('in-view'));
+      return;
+    }
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+    },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    targets.forEach(el=>io.observe(el));
+  })();
+
+  /* Slow smooth scroll for in-page anchor links */
+  (function(){
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce) return;
+    const DURATION = 1600; // slow
+    const easeInOutCubic = t => t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        const id = a.getAttribute('href');
+        if(!id || id === '#' || id.length < 2) return;
+        const target = document.querySelector(id);
+        if(!target) return;
+        ev.preventDefault();
+        const startY = window.scrollY;
+        const endY = target.getBoundingClientRect().top + startY - 70;
+        const startT = performance.now();
+        function step(now){
+          const p = Math.min(1,(now-startT)/DURATION);
+          window.scrollTo(0, startY + (endY-startY)*easeInOutCubic(p));
+          if(p<1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    });
+  })();
 </script>
 </body>
 </html>

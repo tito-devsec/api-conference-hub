@@ -639,21 +639,73 @@
   function setTeam(i){
     teamIdx = (i+team.length)%team.length;
     const m = team[teamIdx];
-    nameEl.textContent = m.name;
-    roleEl.textContent = m.role;
-    bioEl.textContent = '\u201C'+m.bio+'\u201D';
-    curEl.textContent = String(teamIdx+1).padStart(2,'0');
-    [...portrait.querySelectorAll('img')].forEach((img,idx)=>img.classList.toggle('is-active', idx===teamIdx));
-    socialsEl.innerHTML = `
+    const infoEl = document.querySelector('#our-team .team-info');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const apply = ()=>{
+      nameEl.textContent = m.name;
+      roleEl.textContent = m.role;
+      bioEl.textContent = '\u201C'+m.bio+'\u201D';
+      curEl.textContent = String(teamIdx+1).padStart(2,'0');
+      [...portrait.querySelectorAll('img')].forEach((img,idx)=>img.classList.toggle('is-active', idx===teamIdx));
+      socialsEl.innerHTML = `
       <a href="${m.x}" target="_blank" rel="noopener" aria-label="X"><i class="lni lni-twitter"></i></a>
       <a href="${m.github}" target="_blank" rel="noopener" aria-label="GitHub"><i class="lni lni-github"></i></a>
       <a href="${m.insta}" target="_blank" rel="noopener" aria-label="Instagram"><i class="lni lni-instagram"></i></a>
       <a href="${m.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="lni lni-linkedin"></i></a>`;
-    renderThumbs();
+      renderThumbs();
+      requestAnimationFrame(()=>infoEl && infoEl.classList.remove('is-switching'));
+    };
+    if(infoEl && !reduce){
+      infoEl.classList.add('is-switching');
+      setTimeout(apply, 320);
+    } else {
+      apply();
+    }
   }
   document.getElementById('teamPrev').addEventListener('click',()=>setTeam(teamIdx-1));
   document.getElementById('teamNext').addEventListener('click',()=>setTeam(teamIdx+1));
   setTeam(0);
+
+  /* Scroll reveal: tag major blocks and observe */
+  (function(){
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const targets = document.querySelectorAll('section .section-title-header, section .row > [class*="col-"], .team-stage, .pricing-card, .speaker-card');
+    targets.forEach(el=>el.classList.add('reveal'));
+    if(reduce || !('IntersectionObserver' in window)){
+      targets.forEach(el=>el.classList.add('in-view'));
+      return;
+    }
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+    },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    targets.forEach(el=>io.observe(el));
+  })();
+
+  /* Slow smooth scroll for in-page anchor links */
+  (function(){
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce) return;
+    const DURATION = 1600; // slow
+    const easeInOutCubic = t => t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        const id = a.getAttribute('href');
+        if(!id || id === '#' || id.length < 2) return;
+        const target = document.querySelector(id);
+        if(!target) return;
+        ev.preventDefault();
+        const startY = window.scrollY;
+        const endY = target.getBoundingClientRect().top + startY - 70;
+        const startT = performance.now();
+        function step(now){
+          const p = Math.min(1,(now-startT)/DURATION);
+          window.scrollTo(0, startY + (endY-startY)*easeInOutCubic(p));
+          if(p<1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    });
+  })();
 </script>
 </body>
 </html>

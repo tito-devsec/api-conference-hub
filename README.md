@@ -1,6 +1,6 @@
 # APICon 2026 — Tanzania's Conference for API Builders
 
-> Three days of talks, workshops and live demos for API builders, platform engineers and developer-experience leaders — held at **JNICC Posta, Dar es Salaam, Tanzania**.
+> Three days of talks, workshops and live demos for API builders, platform engineers, API cyber expert and developer-experience leaders — held at **JNICC Posta, Dar es Salaam, Tanzania**.
 
 ![TanStack Start](https://img.shields.io/badge/TanStack_Start-v1-ef4444)
 ![React](https://img.shields.io/badge/React-19-61dafb)
@@ -23,7 +23,7 @@ APICon is Tanzania's home for everyone who designs, ships and operates APIs. The
 
 ## 🌐 Live preview
 
-- App: [Lovable preview](https://id-preview--b958dae5-5b3b-437c-a4ee-92ed3efc06bb.lovable.app)
+- App: --
 - Conference landing page: `/apiconference/index.html`
 
 ## ✨ Features
